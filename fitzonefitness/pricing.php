@@ -216,7 +216,6 @@ include 'signup.php';
                         <button class="action-button">Join Class</button>
                     </div>
                 </div>
-
                 <div class="plan-card">
                     <div class="card-header">
                         <h3 class="plan-name">Nutrition Counseling</h3>

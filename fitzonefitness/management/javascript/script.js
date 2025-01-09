@@ -48,3 +48,14 @@ document.addEventListener('click', function(event) {
         dropdown.classList.remove('show');
     }
 });
+
+
+document.querySelector('.close-modal').onclick = function() {
+    document.getElementById('viewModal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('viewModal')) {
+        document.getElementById('viewModal').style.display = 'none';
+    }
+}

@@ -1,3 +1,14 @@
+<?php 
+session_start();
+if(isset($_SESSION['message'])): ?>
+    <div class="message <?php echo $_SESSION['message_type']; ?>">
+        <?php 
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        unset($_SESSION['message_type']);
+        ?>
+    </div>
+<?php endif; ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +19,44 @@
         a{
     text-decoration: none;
     color: #ffffff;
+}
+.message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 25px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    z-index: 1000;
+    min-width: 300px;
+    max-width: 80%;
+    animation: slideDown 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.message.error {
+    background: linear-gradient(135deg, #ff4e4e20 0%, #ff000020 100%);
+    border: 1px solid #ff4e4e;
+    color: #ff4e4e;
+}
+
+.message.success {
+    background: linear-gradient(135deg, #4eff5e20 0%, #00ff1a20 100%);
+    border: 1px solid #4eff5e;
+    color: #4eff5e;
+}
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
 }
     </style>
 </head>
@@ -123,7 +172,7 @@
             </div>
         </div>
     </div>
-    <script src="javascript/function.js"></script>   
+    <script src="javascript/script.js"></script>   
 </body>
 </body>
 </html>

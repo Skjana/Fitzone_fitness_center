@@ -82,7 +82,7 @@ if(isset($_POST['login'])) {
             header("Location: index.php");
             exit();
         } else {
-            $_SESSION['message'] = "Invalid password";
+            $_SESSION['message'] = "Invalid user name or password";
             $_SESSION['message_type'] = "error";
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();

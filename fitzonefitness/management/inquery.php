@@ -2,7 +2,6 @@
 session_start();
 include 'config.php';
 
-// view inquery
 if(isset($_GET['view_id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['view_id']);
     $query = "SELECT * FROM inquery_message WHERE id = '$id'";
@@ -10,7 +9,6 @@ if(isset($_GET['view_id'])) {
     $inquiry = mysqli_fetch_assoc($result);
 }
 
-// Delete inquiry
 if(isset($_POST['delete_inquiry'])) {
     $id = $_POST['inquiry_id'];
     mysqli_query($conn, "DELETE FROM inquery_message WHERE id = $id");
@@ -18,7 +16,6 @@ if(isset($_POST['delete_inquiry'])) {
     exit();
 }
 
-// Get all inquiries
 $query = "SELECT * FROM inquery_message ORDER BY created_at DESC";
 $result = mysqli_query($conn, $query);
 
@@ -31,7 +28,7 @@ $result = mysqli_query($conn, $query);
     <title>Fizone Fitness Center - Admin Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <style>
-   .modal-content {
+        .modal-content {
     position: relative;
     background: white;
     width: 80%;
@@ -41,7 +38,16 @@ $result = mysqli_query($conn, $query);
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
 .close-modal {
     position: absolute;
     right: 20px;
@@ -148,7 +154,6 @@ $result = mysqli_query($conn, $query);
         <?php endif; ?>
     </div>
 </div>
-
 <script src="javascript/script.js"></script>   
 </body>
 </body>
