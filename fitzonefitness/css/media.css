@@ -1,0 +1,94 @@
+/* Existing styles remain unchanged until media queries */
+
+/* Mobile Navigation */
+@media screen and (max-width: 1024px) {
+    .top-nav {
+        padding: 20px 16px;
+    }
+    
+    .nav-links {
+        gap: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .top-nav {
+        position: relative;
+        padding: 15px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--card-bg);
+        flex-direction: column;
+        padding: 50px 20px;
+        transition: 0.3s ease;
+        z-index: 100;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    /* Hamburger Menu */
+    .menu-btn {
+        display: block;
+        width: 35px;
+        height: 35px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 101;
+    }
+
+    .menu-btn span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: var(--white-color);
+        margin: 6px 0;
+        transition: 0.3s;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* User Menu Adjustments */
+    .user-menu {
+        gap: 15px;
+    }
+
+    .dropdown-content {
+        right: -50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-logo {
+        width: 120px;
+    }
+
+    .nav-links {
+        width: 85%;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
