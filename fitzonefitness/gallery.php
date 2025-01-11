@@ -94,7 +94,7 @@ include 'signup.php';
             <div class="gallery-item">
                 <img src="pictures/crossfit.jpeg" alt="Transformation 1" class="gallery-img">
                 <div class="gallery-overlay">
-                    <h3>John's Complete Transformation</h3>
+                    <h3>Sarah's Journey</h3>
                     <p>12-week intensive program results</p>
                 </div>
                 <div class="stats">-30 lbs</div>
@@ -102,7 +102,7 @@ include 'signup.php';
             <div class="gallery-item">
                 <img src="pictures/transformation-2.jpg" alt="Transformation 2" class="gallery-img">
                 <div class="gallery-overlay">
-                    <h3>Sarah's Journey</h3>
+                    <h3>John's Complete Transformation</h3>
                     <p>From beginner to competitor</p>
                 </div>
                 <div class="stats">+40% Strength</div>

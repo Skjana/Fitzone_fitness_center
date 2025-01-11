@@ -10,49 +10,6 @@ if(isset($_SESSION['message'])): ?>
     </div>
 <?php endif; ?>
 
-<?php
-
-require_once 'config/database.php';
-
-if(isset($_POST['join_class'])) {
-    if(!isset($_SESSION['user_id'])) {
-        $_SESSION['message'] = "Please log in to join this class";
-        $_SESSION['message_type'] = "error";
-        header("Location: login.php");
-        exit();
-    } else {
-        $user_id = $_SESSION['user_id'];
-        $class_id = $_POST['class_id'];
-        
-        // Check if already enrolled
-        $check_sql = "SELECT * FROM class_enrollments WHERE user_id = ? AND class_id = ?";
-        $check_stmt = $conn->prepare($check_sql);
-        $check_stmt->bind_param("ii", $user_id, $class_id);
-        $check_stmt->execute();
-        $result = $check_stmt->get_result();
-        
-        if($result->num_rows > 0) {
-            $_SESSION['message'] = "You are already enrolled in this class";
-            $_SESSION['message_type'] = "warning";
-        } else {
-            // Insert new enrollment
-            $sql = "INSERT INTO class_enrollments (user_id, class_id, enrollment_date) VALUES (?, ?, NOW())";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $user_id, $class_id);
-            
-            if($stmt->execute()) {
-                $_SESSION['message'] = "Successfully enrolled in the class!";
-                $_SESSION['message_type'] = "success";
-            } else {
-                $_SESSION['message'] = "Error enrolling in class";
-                $_SESSION['message_type'] = "error";
-            }
-        }
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    }
-}
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -393,5 +350,6 @@ include 'signup.php';
 </footer>
 <script src="javascript/function.js"></script>
 <script src="javascript/loader.js"></script>
+<script src="javascript/table.js"></script>
 </body>
 </html>

@@ -18,6 +18,16 @@ if(isset($_SESSION['message'])): ?>
     <link rel="stylesheet" href="css/blogstyle.css">
 </head>
 <body>
+<!-- preloader effect  -->
+<div class="preloader">
+        <div class="creative-loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-text">FITZONE</div>
+        </div>
+</div>
+
      <!-- header session design -->
  <section class="header-session">
     <!-- navigation bar design -->
@@ -215,5 +225,6 @@ include 'signup.php';
     </div>
 </footer>
 <script src="javascript/function.js"></script>
+<script src="javascript/loader.js"></script>
 </body>
 </html>

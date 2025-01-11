@@ -69,7 +69,7 @@ if(isset($_SESSION['message'])): ?>
             <h3>Administration</h3>
             <li><img src="pictures/dashboard.png" alt="dashboard-icon"> Dashboard</li>
             <li><a href="inquery.php"><img src="pictures/inquery.png" alt="inquery-icon">Inquery</a></li>
-            <li><img src="pictures/trainer.png" alt="Trainers Icon"> Trainers</li>
+            <li><a href="users.php"><img src="pictures/member.png" alt="User Icon"> Users</a></li>
             <li><img src="pictures/class.png" alt="Classes Icon"> Classes</li>
             <li><img src="pictures/payment.png" alt="Payments Icon"> Payments</li>
             <li><img src="pictures/setting.png" alt="Settings Icon"> Settings</li>

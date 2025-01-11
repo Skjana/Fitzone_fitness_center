@@ -4,19 +4,19 @@ include 'config.php';
 
 if(isset($_GET['view_id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['view_id']);
-    $query = "SELECT * FROM inquery_message WHERE id = '$id'";
+    $query = "SELECT * FROM users WHERE id = '$id'";
     $result = mysqli_query($conn, $query);
-    $inquiry = mysqli_fetch_assoc($result);
+    $users = mysqli_fetch_assoc($result);
 }
 
-if(isset($_POST['delete_inquiry'])) {
-    $id = $_POST['inquiry_id'];
-    mysqli_query($conn, "DELETE FROM inquery_message WHERE id = $id");
-    header("Location: inquery.php");
+if(isset($_POST['delete_user'])) {
+    $id = $_POST['user_id'];
+    mysqli_query($conn, "DELETE FROM users WHERE id = $id");
+    header("Location: users.php");
     exit();
 }
 
-$query = "SELECT * FROM inquery_message ORDER BY created_at DESC";
+$query = "SELECT * FROM users ORDER BY created_at DESC";
 $result = mysqli_query($conn, $query);
 
 ?>
@@ -71,7 +71,7 @@ $result = mysqli_query($conn, $query);
     display: inline-block;
     width: 80px;
 }
-</style>
+    </style>
 </head>
 <body>
 <div class="sidebar">
@@ -108,14 +108,14 @@ $result = mysqli_query($conn, $query);
 <!-- inquery table design -->
     <div class="tabel-content">
         <div class="inquiries-table">
-            <h2>Contact Form Inquiries</h2>
+            <h2>Customer Details</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Full Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Message</th>
+                        <th>Address</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
@@ -123,17 +123,17 @@ $result = mysqli_query($conn, $query);
                 <tbody>
                     <?php while($row = mysqli_fetch_assoc($result)): ?>
                     <tr>
-                        <td><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td><?php echo htmlspecialchars($row['phone']); ?></td>
-                        <td><?php echo htmlspecialchars($row['message']); ?></td>
+                        <td><?php echo ($row['full_name']); ?></td>
+                        <td><?php echo ($row['email']); ?></td>
+                        <td><?php echo ($row['contact']); ?></td>
+                        <td><?php echo ($row['address']); ?></td>
                         <td><?php echo date('M d, Y', strtotime($row['created_at'])); ?></td>
                         <td>
-                        <button class="action-btn view-btn" onclick="window.location.href='inquery.php?view_id=<?php echo $row['id']; ?>'">View</button>
+                        <button class="action-btn view-btn" onclick="window.location.href='users.php?view_id=<?php echo $row['id']; ?>'">View</button>
                             <button class="action-btn edit-btn" onclick="editInquiry(<?php echo $row['id']; ?>)">Edit</button>
                             <form method="POST" style="display: inline;">
-                                <input type="hidden" name="inquiry_id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="delete_inquiry" class="action-btn delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                                <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>">
+                                <button type="submit" name="delete_user" class="action-btn delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -145,15 +145,15 @@ $result = mysqli_query($conn, $query);
 
     <div id="viewModal" class="modal" <?php echo isset($_GET['view_id']) ? 'style="display:block;"' : ''; ?>>
     <div class="modal-content">
-        <a href="inquery.php" class="close-modal">&times;</a>
-        <h2>Inquiry Details</h2>
-        <?php if(isset($inquiry)): ?>
+        <a href="users.php" class="close-modal">&times;</a>
+        <h2>Customer Detail</h2>
+        <?php if(isset($users)): ?>
         <div class="inquiry-details">
-            <p><strong>Name:</strong> <?php echo ($inquiry['name']); ?></p>
-            <p><strong>Email:</strong> <?php echo ($inquiry['email']); ?></p>
-            <p><strong>Phone:</strong> <?php echo ($inquiry['phone']); ?></p>
-            <p><strong>Message:</strong> <?php echo ($inquiry['message']); ?></p>
-            <p><strong>Date:</strong> <?php echo date('M d, Y', strtotime($inquiry['created_at'])); ?></p>
+            <p><strong>Full Name:</strong> <?php echo ($users['full_name']); ?></p>
+            <p><strong>Email:</strong> <?php echo ($users['email']); ?></p>
+            <p><strong>Phone:</strong> <?php echo ($users['contact']); ?></p>
+            <p><strong>Address:</strong> <?php echo ($users['address']); ?></p>
+            <p><strong>Date:</strong> <?php echo date('M d, Y', strtotime($users['created_at'])); ?></p>
         </div>
         <?php endif; ?>
     </div>
